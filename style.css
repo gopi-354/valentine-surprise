@@ -131,26 +131,51 @@ button {
     padding: 2rem;
 }
 
+/* Masonry Library Style */
 .gallery {
     column-count: 3;
     column-gap: 1.5rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
 }
 
-.gallery img {
-    width: 100%;
-    border-radius: 12px;
+.photo-card {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     margin-bottom: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
     break-inside: avoid;
     /* Prevent images from splitting inside columns */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: rotate(var(--rotation, 0deg));
 }
 
-.gallery img:hover {
-    transform: scale(1.02);
+.photo-card img {
+    width: 100%;
+    border-radius: 2px;
+    display: block;
+}
+
+.photo-card:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    position: relative;
+}
+
+/* Specific rotation for a messy pile look (optional, can remove if too chaotic) */
+.photo-card:nth-child(odd) {
+    --rotation: -2deg;
+}
+
+.photo-card:nth-child(even) {
+    --rotation: 2deg;
+}
+
+.photo-card:nth-child(3n) {
+    --rotation: 1deg;
 }
 
 .photo-card {
