@@ -156,7 +156,10 @@ button {
 
 .photo-card img {
     width: 100%;
-    height: auto;
+    /* Enforce portrait aspect ratio (3:4) */
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    /* Eliminate gaps by cropping landscape images */
     border-radius: 2px;
     display: block;
 }
@@ -171,10 +174,16 @@ button {
 .photo-card.centered {
     grid-column: 1 / -1;
     /* Span full width */
-    width: 60%;
-    /* Limit width so it doesn't look huge */
+    width: 100%;
+    /* Full width of the container */
     margin: 0 auto;
-    /* Center horizontally */
+}
+
+/* Override aspect ratio for the final wide photo if desired */
+.photo-card.centered img {
+    aspect-ratio: 16 / 9;
+    /* Keep it landscape */
+    object-fit: cover;
 }
 
 /* Mobile Responsiveness for Grid */
