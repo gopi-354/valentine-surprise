@@ -131,51 +131,64 @@ button {
     padding: 2rem;
 }
 
-/* Masonry Library Style */
+/* Structured Grid Layout */
 .gallery {
-    column-count: 3;
-    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 equal columns */
+    gap: 2rem;
     width: 90%;
     max-width: 1000px;
     margin: 2rem auto;
+    align-items: center;
+    /* Center items vertically if heights differ */
 }
 
 .photo-card {
     background: white;
-    padding: 10px;
+    padding: 12px;
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    margin-bottom: 1.5rem;
-    break-inside: avoid;
-    /* Prevent images from splitting inside columns */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform: rotate(var(--rotation, 0deg));
+    /* Reset rotation for clean grid look, or keep subtle if desired */
+    transform: rotate(0deg);
 }
 
 .photo-card img {
     width: 100%;
+    height: auto;
     border-radius: 2px;
     display: block;
 }
 
 .photo-card:hover {
-    transform: scale(1.05) rotate(0deg) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     z-index: 10;
-    position: relative;
 }
 
-/* Specific rotation for a messy pile look (optional, can remove if too chaotic) */
-.photo-card:nth-child(odd) {
-    --rotation: -2deg;
+/* Specific styling for the centered landscape photo at the bottom */
+.photo-card.centered {
+    grid-column: 1 / -1;
+    /* Span full width */
+    width: 60%;
+    /* Limit width so it doesn't look huge */
+    margin: 0 auto;
+    /* Center horizontally */
 }
 
-.photo-card:nth-child(even) {
-    --rotation: 2deg;
-}
+/* Mobile Responsiveness for Grid */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        /* Single column on mobile */
+        gap: 1.5rem;
+    }
 
-.photo-card:nth-child(3n) {
-    --rotation: 1deg;
+    .photo-card.centered {
+        width: 100%;
+        /* Full width on mobile */
+    }
 }
 
 .photo-card {
